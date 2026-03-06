@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Escola Virtual</title>
+<style>
+
+/* =============================================
+   RESET BÁSICO
+============================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =============================================
+   BODY
+============================================= */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: #eef1f5;
+  color: #333333;
+  min-height: 100vh;
+}
+
+/* =============================================
+   CABEÇALHO
+============================================= */
+h1 {
+  background-color: #1a2f45;
+  color: #ffffff;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 32px;
+  letter-spacing: 3px;
+}
+
+h2 {
+  text-align: center;
+  color: #1a2f45;
+  margin: 40px 0 30px;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+/* =============================================
+   FORMULÁRIO - Layout wide centralizado
+============================================= */
+form {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto 60px auto;
+  background-color: #ffffff;
+  padding: 50px 60px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =============================================
+   FIELDSET
+============================================= */
+fieldset {
+  border: 2px solid #1a2f45;
+  border-radius: 8px;
+  padding: 30px 35px;
+  margin-bottom: 35px;
+}
+
+legend {
+  background-color: #1a2f45;
+  color: #ffffff;
+  padding: 7px 18px;
+  border-radius: 5px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* =============================================
+   GRID DE CAMPOS - Duas colunas
+============================================= */
+.campo-grupo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+  margin-bottom: 20px;
+}
+
+/* =============================================
+   CADA CAMPO INDIVIDUAL
+============================================= */
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* =============================================
+   NASCIMENTO E TELEFONE - linha inline
+============================================= */
+.campo-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.campo-inline label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* =============================================
+   LABELS
+============================================= */
+label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #1a2f45;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =============================================
+   INPUTS - Regra geral para todos os tipos
+============================================= */
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+  padding: 10px 14px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #fafafa;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Inputs que ocupam largura total */
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="date"] {
+  width: 100%;
+}
+
+/* Inputs dentro da linha inline ficam com tamanho automático */
+.campo-inline input[type="text"] {
+  width: auto;
+}
+
+/* Efeito de foco em todos os inputs */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+  border-color: #1a2f45;
+  box-shadow: 0 0 0 3px rgba(26, 47, 69, 0.1);
+  outline: none;
+  background-color: #ffffff;
+}
+
+/* =============================================
+   SELECT
+============================================= */
+select {
+  padding: 10px 14px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #fafafa;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+select:focus {
+  border-color: #1a2f45;
+  outline: none;
+}
+
+/* =============================================
+   TABELA DE MATRÍCULA
+============================================= */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+td {
+  padding: 15px 20px;
+  vertical-align: top;
+  border-right: 1px solid #e0e0e0;
+  width: 33.33%;
+}
+
+td:last-child {
+  border-right: none;
+}
+
+/* Título das colunas da tabela */
+td > b,
+td > strong {
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1a2f45;
+  margin-bottom: 12px;
+}
+
+/* =============================================
+   RADIO E CHECKBOX
+============================================= */
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: #1a2f45;
+  width: 15px;
+  height: 15px;
+}
+
+/* Labels de radio e checkbox sem uppercase */
+td label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: normal;
+  font-size: 15px;
+  display: inline;
+  margin-bottom: 0;
+}
+
+/* Espaçamento entre as linhas de checkbox/radio */
+td br + input {
+  margin-top: 8px;
+}
+
+/* =============================================
+   ÁREA DOS BOTÕES
+============================================= */
+.botoes {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+input[type="submit"] {
+  background-color: #27ae60;
+  color: #ffffff;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+input[type="submit"]:hover {
+  background-color: #1e8449;
+}
+
+input[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+input[type="reset"] {
+  background-color: #ffffff;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  padding: 12px 35px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s;
+}
+
+input[type="reset"]:hover {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+input[type="reset"]:active {
+  transform: scale(0.98);
+}
+
+</style>
+</head>
+<body>
+
+  <h1>Escola Virtual</h1>
+  <h2>Formulário de Pré-Matrícula</h2>
+
+  <form action="" method="post">
+
+    <fieldset>
+      <legend><strong>Dados Pessoais</strong></legend>
+
+      <div class="campo-grupo">
+        <div class="campo">
+          <label for="nome_aluno">Nome do Aluno</label>
+          <input type="text" id="nome_aluno" name="nome_aluno" required>
+        </div>
+        <div class="campo">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email">
+        </div>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo">
+          <label for="nome_mae">Nome da Mãe</label>
+          <input type="text" id="nome_mae" name="nome_mae">
+        </div>
+        <div class="campo">
+          <label for="nome_pai">Nome do Pai</label>
+          <input type="text" id="nome_pai" name="nome_pai">
+        </div>
+      </div>
+
+      <div class="campo-grupo">
+        <div class="campo">
+          <label for="nascimento">Nascimento</label>
+          <input type="date" id="nascimento" name="nascimento">
+        </div>
+        <div class="campo">
+          <label for="telefone">Telefone</label>
+          <input type="text" id="telefone" name="telefone" maxlength="15" placeholder="(61) 9 9999-9999">
+        </div>
+      </div>
+      <div class="campo-grupo">
+        
+        <div class="campo">
+          <label for="nascimento">CPF</label>
+          <input type="text" id="CPF" name="CPF" placeholder="000.000.000-00">
+        </div>
+        
+        <div class="campo">
+          <label for="telefone">CEP</label>
+          <input type="text" id="CEP" name="CEP" maxlength="15" placeholder="00000-00">
+        </div>
+      </div>
+      <fieldset>
+        <legend><strong>ENDEREÇO</strong></legend>
+  
+        <div class="campo-grupo">
+          <div class="campo">
+            <label for="nome_aluno">logradouro</label>
+            <input type="text" id="nome_aluno" name="logradouro" required readonly>
+          </div>
+          <div class="campo">
+            <label for="email">número</label>
+            <input type="email" id="email" name="email">
+          </div>
+        </div>
+  
+        <div class="campo-grupo">
+          <div class="campo">
+            <label for="complemento">complemento</label>
+            <input type="text" id="complemento" name="complemento">
+          </div>
+          <div class="campo">
+            <label for="nome_pai">BAIRRO</label>
+            <input type="text" id="bairro" name="bairro" readonly>
+          </div>
+        </div>
+  
+        <div class="campo-grupo">
+          <div class="campo">
+            <label for="nascimento">cidade</label>
+            <input type="text" id="cidade" name="cidade">
+          </div>
+          <div class="campo">
+            <label for="telefone">estado</label>
+            <input type="text" id="" name="estado" maxlength="15" >
+          </div>
+        </div>
+        <div class="campo-grupo">
+          
+          <div class="campo">
+            <label for="nascimento">codigo IBGE</label>
+            <input type="text" id="codigo_ibge" name="codigo_ibge" >
+          </div>
+          
+        </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><strong>Informações de Matrícula</strong></legend>
+
+      <table>
+        <tr valign="top">
+          <td>
+            <strong>Série</strong>
+            <select id="serie" name="serie">
+              <option value="pre-escolar">Pré-escolar</option>
+              <option value="1ano">1º ano</option>
+              <option value="2ano">2º ano</option>
+              <option value="3ano">3º ano</option>
+              <option value="4ano">4º ano</option>
+              <option value="5ano">5º ano</option>
+            </select>
+          </td>
+
+          <td>
+            <strong>Turno</strong>
+            <input type="radio" name="turno" id="manha" value="manha">
+            <label for="manha">Manhã</label><br>
+            <input type="radio" name="turno" id="tarde" value="tarde">
+            <label for="tarde">Tarde</label>
+          </td>
+
+          <td>
+            <strong>Atividades Extracurriculares</strong>
+            <input type="checkbox" name="atividades" id="informatica" value="informatica">
+            <label for="informatica">Informática</label><br>
+
+            <input type="checkbox" name="atividades" id="musica" value="musica">
+            <label for="musica">Música</label><br>
+
+            <input type="checkbox" name="atividades" id="balet" value="balet">
+            <label for="balet">Balet</label><br>
+
+            <input type="checkbox" name="atividades" id="pintura" value="pintura">
+            <label for="pintura">Pintura</label><br>
+
+            <input type="checkbox" name="atividades" id="judo" value="judo">
+            <label for="judo">Judô</label><br>
+
+            <input type="checkbox" name="atividades" id="futebol" value="futebol">
+            <label for="futebol">Futebol</label>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <div class="botoes">
+      <input type="submit" value="Enviar Formulário">
+      <input type="reset" value="Limpar Campos">
+    </div>
+
+  </form>
+
+</body>
+</html>
